@@ -6,13 +6,23 @@
 
   @derive Jason.Encoder
   defstruct [
+    {{#vars.0}}
     {{#vars}}{{#atom}}{{&baseName}}{{/atom}}{{^-last}},
     {{/-last}}{{/vars}}
+    {{/vars.0}}
+    {{^vars.0}}
+    :value
+    {{/vars.0}}
   ]
 
   @type t :: %__MODULE__{
+    {{#vars.0}}
     {{#vars}}{{#atom}}{{&baseName}}{{/atom}} => {{{datatype}}}{{#isNullable}} | nil{{/isNullable}}{{^isNullable}}{{^required}} | nil{{/required}}{{/isNullable}}{{^-last}},
     {{/-last}}{{/vars}}
+    {{/vars.0}}
+    {{^vars.0}}
+    :value => String.t() | nil
+    {{/vars.0}}
   }
 
 {{#hasComplexVars}}
